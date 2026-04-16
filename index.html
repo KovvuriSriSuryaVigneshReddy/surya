@@ -610,7 +610,7 @@
     border-radius: 2px;
     outline: none;
     transition: all 0.3s;
-    cursor: none;
+    cursor: text;
   }
   .form-input:focus, .form-textarea:focus {
     border-color: var(--neon);
@@ -994,23 +994,25 @@
       <a href="https://github.com/KovvuriSriSuryaVigneshReddy" target="_blank" class="contact-link">🐙 GitHub</a>
       <a href="https://www.instagram.com/srisuryavignesh_reddy" target="_blank" class="contact-link">📸 Instagram</a>
     </div>
-    <div class="glass contact-form reveal">
+    <div class="glass contact-form reveal" id="contactForm">
       <div class="form-group">
         <label class="form-label">Name</label>
-        <input type="text" class="form-input" placeholder="Your name">
+        <input type="text" id="cf-name" class="form-input" placeholder="Your name" autocomplete="name">
         <div class="input-glow"></div>
       </div>
       <div class="form-group">
         <label class="form-label">Email</label>
-        <input type="email" class="form-input" placeholder="your@email.com">
+        <input type="email" id="cf-email" class="form-input" placeholder="your@email.com" autocomplete="email">
         <div class="input-glow"></div>
       </div>
       <div class="form-group">
         <label class="form-label">Message</label>
-        <textarea class="form-textarea" placeholder="Your message..."></textarea>
+        <textarea id="cf-message" class="form-textarea" placeholder="Your message..."></textarea>
         <div class="input-glow"></div>
       </div>
-      <button class="btn btn-primary" style="width:100%;border:none;padding:16px;font-size:0.8rem;">Send Message</button>
+      <div id="cf-error" style="display:none;font-family:'Share Tech Mono',monospace;font-size:0.72rem;color:#ff2d78;letter-spacing:2px;padding:8px 0;"></div>
+      <button id="cf-btn" class="btn btn-primary" style="width:100%;border:none;padding:16px;font-size:0.8rem;letter-spacing:3px;" onclick="sendContactForm()">Send Message</button>
+      <div id="cf-success" style="display:none;text-align:center;font-family:'Share Tech Mono',monospace;font-size:0.75rem;letter-spacing:3px;color:#00d4ff;padding:16px 0;animation:pulse-text 1.5s infinite;">✓ &nbsp;MESSAGE SENT — OPENING YOUR MAIL CLIENT</div>
     </div>
   </div>
 </section>
@@ -1022,6 +1024,67 @@
 
 <!-- THREE.JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+<script>
+/* ── CONTACT FORM ── */
+function sendContactForm() {
+  const name    = document.getElementById('cf-name').value.trim();
+  const email   = document.getElementById('cf-email').value.trim();
+  const message = document.getElementById('cf-message').value.trim();
+  const errEl   = document.getElementById('cf-error');
+  const btn     = document.getElementById('cf-btn');
+  const success = document.getElementById('cf-success');
+
+  // Validate
+  errEl.style.display = 'none';
+  if (!name) { showErr('▸ NAME IS REQUIRED'); return; }
+  if (!email || !/^[^@]+@[^@]+\.[^@]+$/.test(email)) { showErr('▸ VALID EMAIL IS REQUIRED'); return; }
+  if (!message) { showErr('▸ MESSAGE CANNOT BE EMPTY'); return; }
+
+  function showErr(msg) {
+    errEl.textContent = msg;
+    errEl.style.display = 'block';
+    document.getElementById('cf-' + (msg.includes('NAME') ? 'name' : msg.includes('EMAIL') ? 'email' : 'message')).style.borderColor = 'var(--neon3)';
+  }
+
+  // Build mailto
+  const subject = encodeURIComponent('Portfolio Contact from ' + name);
+  const body    = encodeURIComponent(
+    'Name: ' + name + '\n' +
+    'Email: ' + email + '\n\n' +
+    'Message:\n' + message
+  );
+  const mailto = 'mailto:kovvuri.srisuryavigneshreddy@gmail.com?subject=' + subject + '&body=' + body;
+
+  // Visual feedback
+  btn.style.display = 'none';
+  success.style.display = 'block';
+
+  // Reset border colors
+  ['cf-name','cf-email','cf-message'].forEach(id => {
+    document.getElementById(id).style.borderColor = '';
+  });
+
+  // Open mail client
+  window.location.href = mailto;
+
+  // Reset form after 4s
+  setTimeout(() => {
+    document.getElementById('cf-name').value = '';
+    document.getElementById('cf-email').value = '';
+    document.getElementById('cf-message').value = '';
+    success.style.display = 'none';
+    btn.style.display = 'block';
+  }, 4000);
+}
+
+// Reset border on input
+['cf-name','cf-email','cf-message'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) el.addEventListener('input', () => { el.style.borderColor = ''; });
+});
+
+</script>
 
 <script>
 /* ── LOADER ── */

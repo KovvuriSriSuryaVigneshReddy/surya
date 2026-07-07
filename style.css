@@ -510,6 +510,95 @@
     letter-spacing: 2px;
   }
 
+  /* ── PROJECTS ── */
+  .projects-inner { max-width: 1000px; width: 100%; }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+  }
+  .project-card {
+    padding: 36px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  .project-icon {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+  }
+  .project-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+  .project-desc {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--muted);
+    margin-bottom: 24px;
+    flex-grow: 1;
+  }
+  .project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  .tech-badge {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 1px;
+    color: var(--neon);
+    border: 1px solid rgba(0, 212, 255, 0.15);
+    background: rgba(0, 212, 255, 0.03);
+    padding: 4px 10px;
+    border-radius: 4px;
+    text-transform: uppercase;
+  }
+  .project-links {
+    display: flex;
+    gap: 12px;
+  }
+  .project-btn {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    transition: all 0.3s;
+    cursor: none;
+    background: linear-gradient(135deg, var(--neon), var(--neon2));
+    color: var(--navy);
+    font-weight: 700;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+    text-align: center;
+    flex: 1;
+  }
+  .project-btn.outline {
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    color: var(--neon);
+    font-weight: 500;
+    box-shadow: none;
+  }
+  .project-btn:hover:not(.outline) {
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+  }
+  .project-btn.outline:hover {
+    border-color: var(--neon);
+    background: rgba(0, 212, 255, 0.1);
+    box-shadow: var(--glow);
+    transform: translateY(-2px);
+  }
+
   /* ── CERTIFICATIONS ── */
   .certs-inner { max-width: 900px; width: 100%; }
   .certs-grid {

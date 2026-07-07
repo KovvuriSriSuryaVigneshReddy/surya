@@ -1209,6 +1209,49 @@ footer {
     display: none;
   }
 
+  /* Center and prevent overflow for hero elements on mobile */
+  .hero-badge {
+    font-size: 0.58rem;
+    letter-spacing: 2px;
+    line-height: 1.4;
+    max-width: 100%;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .hero-name {
+    font-size: 1.6rem !important; /* Scale down long name to prevent clipping and keep centered */
+    line-height: 1.2;
+    text-align: center;
+    width: 100%;
+  }
+
+  .hero-sub {
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+    line-height: 1.4;
+    text-align: center;
+  }
+
+  .hero-location {
+    font-size: 0.7rem;
+    letter-spacing: 1.5px;
+    text-align: center;
+  }
+
+  .hero-btns {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 12px;
+  }
+
+  .hero-btns .btn {
+    width: 100%;
+    max-width: 260px;
+    text-align: center;
+  }
+
   #cursor,
   #cursor-trail {
     display: none !important;

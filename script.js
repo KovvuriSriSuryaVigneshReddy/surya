@@ -101,6 +101,26 @@ window.addEventListener('load', function () {
     });
   });
 
+  /* ── MOBILE MENU TOGGLE ── */
+  var menuToggle = document.getElementById('mobile-menu');
+  var navLinks   = document.querySelector('.nav-links');
+
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', function() {
+      menuToggle.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+
+    // Close mobile menu when any navigation link is clicked
+    document.querySelectorAll('.nav-links a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        menuToggle.classList.remove('active');
+        navLinks.classList.remove('active');
+      });
+    });
+  }
+
+
   /* ── THREE.JS BACKGROUND ── */
   (function() {
     if (typeof THREE === 'undefined') { console.warn('Three.js not loaded'); return; }

@@ -222,6 +222,26 @@ nav.scrolled {
   font-weight: 600;
 }
 
+/* ── MOBILE MENU TOGGLE ── */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 26px;
+  height: 18px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.menu-toggle .bar {
+  height: 2px;
+  width: 100%;
+  background-color: var(--neon);
+  border-radius: 4px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: var(--glow);
+}
+
 /* ── SECTIONS ── */
 section {
   position: relative;
@@ -1089,15 +1109,65 @@ footer {
 /* ── RESPONSIVE ── */
 @media(max-width:768px) {
   nav {
-    padding: 16px 24px;
+    padding: 16px 24px !important;
+  }
+
+  nav.scrolled {
+    padding: 12px 24px !important;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  /* Hamburger to 'X' animation */
+  .menu-toggle.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .menu-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
   }
 
   .nav-links {
-    display: none;
+    display: flex !important;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 260px;
+    height: 100vh;
+    background: rgba(3, 6, 16, 0.98);
+    backdrop-filter: blur(15px);
+    border-left: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 100px 24px;
+    gap: 12px;
+    transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 1000;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+  }
+
+  .nav-links.active {
+    right: 0;
+  }
+
+  .nav-links li {
+    width: 100%;
+  }
+
+  .nav-links a {
+    display: block;
+    width: 100%;
+    font-size: 1.25rem;
+    padding: 10px 16px;
   }
 
   section {
-    padding: 100px 24px;
+    padding: 80px 20px;
   }
 
   .about-grid {
@@ -1105,15 +1175,39 @@ footer {
   }
 
   .about-card {
-    padding: 28px;
+    padding: 24px;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .certs-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline::before {
+    left: 10px;
+  }
+
+  .timeline-item {
+    padding: 0 0 30px 35px;
+  }
+
+  .timeline-dot {
+    left: 3px;
   }
 
   .contact-form {
-    padding: 28px;
+    padding: 24px;
   }
 
   .float-el {
     display: none;
+  }
+
+  #cursor, #cursor-trail {
+    display: none !important;
   }
 }
 

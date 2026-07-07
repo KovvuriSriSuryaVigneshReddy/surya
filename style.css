@@ -196,6 +196,7 @@ nav.scrolled {
 
 .nav-links {
   display: flex;
+  margin-left: auto; /* Push links to the right corner */
   gap: 4px;
   list-style: none;
 }
@@ -260,7 +261,8 @@ section {
   height: 150px;
   opacity: 0;
   animation: fadeUp 0.9s 1.3s forwards;
-  margin-top: -35px; /* Moves the profile image slightly higher */
+  margin-top: -35px;
+  /* Moves the profile image slightly higher */
   margin-bottom: 10px;
 }
 
@@ -290,7 +292,8 @@ section {
   height: 150px;
   border-radius: 50%;
   object-fit: cover;
-  object-position: center; /* Centers the image content inside the circular frame */
+  object-position: center;
+  /* Centers the image content inside the circular frame */
   border: 3px solid var(--navy);
   box-shadow: 0 0 40px rgba(0, 212, 255, 0.3);
 }
@@ -1206,7 +1209,8 @@ footer {
     display: none;
   }
 
-  #cursor, #cursor-trail {
+  #cursor,
+  #cursor-trail {
     display: none !important;
   }
 }
